@@ -27,7 +27,7 @@ function setup() {
   debug_button.position(400,450);
   debug_button.mousePressed(function() {
     puzzle.print_state();
-    var solution_string = puzzle.scramble(10);
+    var solution_string = puzzle.scramble(9);
     console.log(puzzle.print_solution(solution_string));});
   var heuristic_button = createButton('heuristic');
   heuristic_button.position(500, 450);
@@ -53,40 +53,55 @@ function AtomicChaosPuzzle() {
   //to be fair, we were very rushed with this assignment.
   this.state;
 
-  //attempts to solve the puzzle using A*
+  //attempts to solve the puzzle using IDA*
   this.solve = function() {
     console.log("starting solving process");
     var initial_state = deep_copy(this.state);
     var frontier = new PriorityQueue(); //make the frontier
-    frontier.push({ state: deep_copy(this.state), g: 0, path: "" }, this.get_heuristic_value(this.state)); //put the start state on the frontier
+    var max_depth = 5; // initial max depth is set to 5
+    frontier.push({ state: deep_copy(initial_state), g: 0, path: "" }, this.get_heuristic_value(initial_state)); //put the start state on the frontier
 
     var found_solution = false;
+    var first_iter = true; //hacky solution, don't ask...
+    var expanded_nodes = 0;
 
     while (!found_solution) {
-      var current_node = frontier.pop();
-      // console.log("gval: "+current_node.g);
-      // console.log("state: "+current_node.state);
-      this.state = deep_copy(current_node.state); //pop the puzzle state with the lowest f-val
+      if (frontier.heap.length == 2 && !first_iter) { // we've seen all nodes up to the depth
+        max_depth++;
+        expanded_nodes = 0;
+        console.log("max depth increased to "+max_depth);
+        frontier = new PriorityQueue(); // reset the PriorityQueue
+        frontier.push({ state: deep_copy(initial_state), g: 0, path: "" }, this.get_heuristic_value(initial_state)); //put the start state on the frontier
+      }
+      first_iter = false;
+      var current_node = frontier.pop(); // pop the puzzle state with the lowest f-val
+      expanded_nodes++;
+      this.state = deep_copy(current_node.state);
       if (this.is_goal_state()) {
         found_solution = true;
         console.log("found!!!");
         console.log(this.print_solution(current_node.path));
+        console.log("expanded "+expanded_nodes+" nodes in the last iteration");
         this.state = deep_copy(initial_state);
         this.render();
         // found the solution!!!
         // trace back and print out the solution
       } else {
-        console.log("enqueueing children...");
-        // enqueue the children
-        var save_state = deep_copy(this.state);
-        this.clockwise();
-        frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"U" }, current_node.g+1 + this.get_heuristic_value(this.state));
-        this.state = deep_copy(save_state);
-        this.counter_clockwise();
-        frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"D" }, current_node.g+1 + this.get_heuristic_value(this.state));
-        this.state = deep_copy(save_state);
-        this.flip();
-        frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"F" }, current_node.g+1 + this.get_heuristic_value(this.state));
+        if (current_node.g < max_depth) {
+          console.log("enqueueing children...");
+          // enqueue the children
+          var save_state = deep_copy(this.state);
+          this.clockwise();
+          frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"U" }, current_node.g+1 + this.get_heuristic_value(this.state));
+          this.state = deep_copy(save_state);
+          this.counter_clockwise();
+          frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"D" }, current_node.g+1 + this.get_heuristic_value(this.state));
+          this.state = deep_copy(save_state);
+          this.flip();
+          frontier.push({ state: deep_copy(this.state), g: current_node.g+1, path: current_node.path+"F" }, current_node.g+1 + this.get_heuristic_value(this.state));
+        } else {
+          console.log("didn't push children, already at maximum depth");
+        }
       }
     }
 
@@ -412,33 +427,37 @@ function AtomicChaosPuzzle() {
   }
 
   this.get_heuristic_value = function(current_state) {
-    //max(int number_of_tubes_with_an_incorrectly_colored_ball_on_the_lower_half, int number_of_turns_to_properly_align_tubes);
+    //number of turns to align tubes, +1 move if there's an incorrect ball on the bottom, 2 if the tubes are aligned and nothings wrong on the bottom but there's a ball on the top
     var turns = current_state[1];
     if (turns > 3) // state[1]==4 => turns==2, state[1]==5 => turns==1
       turns = 6-turns;
-    var tubes = 0;
-    if (current_state[0]) { // <--- grav
-      for (var i = 2; i < 8; i++) {
-        var found_wrong_ball = false;
-        for (var j = 0; j < current_state[i].length; j++) {
-          if (current_state[i][j] != 8-i && current_state[i][j] != 0) //if the ball is incorrectly colored and not blank
-            found_wrong_ball = true;
-        }
-        if (found_wrong_ball)
-          tubes++;
-      }
-    } else {
-      for (var i = 8; i < 14; i++) {
-        var found_wrong_ball = false;
-        for (var j = 0; j < current_state[i].length; j++) {
-          if (current_state[i][j] != 14-i && current_state[i][j] != 0) //if the ball is incorrectly colored and not blank
-            found_wrong_ball = true;
-        }
-        if (found_wrong_ball)
-          tubes++;
+
+    var found_wrong_bottom = false;
+    var found_wrong_top = false;
+
+    for (var i = 2; i < 8; i++) {
+      for (var j = 0; j < current_state[i].length; j++) {
+        if (current_state[i][j] != 8-i && current_state[i][j] != 0) //if the ball is incorrectly colored and not blank
+          if (current_state[0])  // <--- grav
+            found_wrong_bottom = true;
+          else
+            found_wrong_top = true;
       }
     }
-    return Math.max(tubes, turns);
+    for (var i = 8; i < 14; i++) {
+      for (var j = 0; j < current_state[i].length; j++) {
+        if (current_state[i][j] != 14-i && current_state[i][j] != 0) //if the ball is incorrectly colored and not blank
+          if (current_state[0])  // <--- grav
+            found_wrong_top = true;
+          else
+            found_wrong_bottom = true;
+      }
+    }
+
+    if (turns == 0 && found_wrong_top && !found_wrong_bottom)
+      return 2;
+    else
+      return turns+found_wrong_bottom;
   }
 
   //This is a function to create the Array to define the current state of the atomic_chaos
@@ -575,6 +594,9 @@ function getRandomInt(min, max) {
 
 // I found a javascript implementation of a priority queue online, written by user GRIFFnDOOR
 // http://fiddle.jshell.net/GRIFFnDOOR/r7tvg/
+// But unfortunately it's buggy as hell. Why does the heap start with a 'null'?
+// Also, sometimes while popping the call to isHigherPriority goes out of bounds
+// I would have made my own PriorityQueue class to squash these minor bugs, but we only had like a week for this assignment, so...
 function Node (data, priority) {
     this.data = data;
     this.priority = priority;
@@ -636,6 +658,8 @@ PriorityQueue.prototype = {
 
     // returns true if node i is higher priority than j
     isHigherPriority: function(i,j) {
+        if (i == this.heap.length)
+          return false;
         return this.heap[i].priority < this.heap[j].priority;
     }
 }

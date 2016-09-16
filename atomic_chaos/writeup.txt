@@ -1,0 +1,35 @@
+Evan Heaton
+CS 465G: Artificial Intelligence
+Puzzle 2
+Due Friday, September 16th, 2016
+
+For my data structures, I have the following:
+
+I maintain an heap of objects in the form
+  {state_array (as described in puzzle1), g-val (cost so far), path (string of moves to get to this state)}
+these objects are sorted in the heap according to their f-val = g-val + heuristic_value
+
+The "tree" that I navigate through is implicitly defined by the 3 legal moves from each state.
+
+_______________________________________
+
+The heuristic I used is a slightly modified version of Anton's heuristic (which he shared on the discussion boards)
+It is as follows:
+
+heuristic_value is set to the number of turns it would take to properly align the tubes
+if there is a incorrectly placed ball on the lower half of the puzzle, add 1 to the heuristic_value
+if there is an incorrectly placed ball on the top half, and the tubes are aligned, the heuristic_value is set to 2.
+
+This is admissible. The logic being:
+
+  * The minimum number of moves to solve is the number of twists to align the tubes
+  * If there's a misplaced ball in the bottom, there will need to be at the very least a flip in addition to the turns to align the tubes (+1 move)
+  * If the tubes are aligned and there's nothing wrong with the bottom half, but there are still balls on the top half, there's at least two moves to go (one move to turn and drop the ball, one move to realign the tubes afterwards)
+
+_______________________________________
+
+From this assignment, I learned how to implement the most basic algorithm that qualifies as artificial intelligence: A*.
+I guess it qualifies as Artificial Intelligence because it can make informed decisions on how to achieve a goal.
+I learned about the pitfalls of using code taken from the internet: That javascript heap code that I found turned out to be pretty buggy.
+I would have made my own heap class, but we really didn't have time considering we had like a week to complete this assignment.
+Anyways, I would say overall I enjoyed this assignment. At the very least, it's something that buffed up my github account and I can show it off to friends/family/employers for years to come.
