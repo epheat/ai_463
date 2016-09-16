@@ -27,7 +27,7 @@ function setup() {
   debug_button.position(400,450);
   debug_button.mousePressed(function() {
     puzzle.print_state();
-    var solution_string = puzzle.scramble(10);
+    var solution_string = puzzle.scramble(9);
     console.log(puzzle.print_solution(solution_string));});
   var heuristic_button = createButton('heuristic');
   heuristic_button.position(500, 450);
@@ -53,31 +53,35 @@ function AtomicChaosPuzzle() {
   //to be fair, we were very rushed with this assignment.
   this.state;
 
-  //attempts to solve the puzzle using A*
+  //attempts to solve the puzzle using IDA*
   this.solve = function() {
     console.log("starting solving process");
     var initial_state = deep_copy(this.state);
     var frontier = new PriorityQueue(); //make the frontier
-    var max_depth = 5;
+    var max_depth = 5; // initial max depth is set to 5
     frontier.push({ state: deep_copy(initial_state), g: 0, path: "" }, this.get_heuristic_value(initial_state)); //put the start state on the frontier
 
     var found_solution = false;
     var first_iter = true; //hacky solution, don't ask...
+    var expanded_nodes = 0;
 
     while (!found_solution) {
       if (frontier.heap.length == 2 && !first_iter) { // we've seen all nodes up to the depth
         max_depth++;
+        expanded_nodes = 0;
         console.log("max depth increased to "+max_depth);
         frontier = new PriorityQueue(); // reset the PriorityQueue
         frontier.push({ state: deep_copy(initial_state), g: 0, path: "" }, this.get_heuristic_value(initial_state)); //put the start state on the frontier
       }
       first_iter = false;
       var current_node = frontier.pop(); // pop the puzzle state with the lowest f-val
+      expanded_nodes++;
       this.state = deep_copy(current_node.state);
       if (this.is_goal_state()) {
         found_solution = true;
         console.log("found!!!");
         console.log(this.print_solution(current_node.path));
+        console.log("expanded "+expanded_nodes+" nodes in the last iteration");
         this.state = deep_copy(initial_state);
         this.render();
         // found the solution!!!
