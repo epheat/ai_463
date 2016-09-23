@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "DPLL.h"
 
 using namespace std;
 

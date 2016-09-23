@@ -20,4 +20,4 @@ zip:
 	zip evan_heaton_satisfiability *.cpp *.h *.md *.png
 
 clean:
-	rm *.zip *.o satisfiability
+	rm -f *.zip *.o satisfiability
