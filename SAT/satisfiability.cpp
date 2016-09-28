@@ -7,21 +7,41 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <stdlib.h>  //for abs(), rand(), srand()
+#include <time.h>
 #include "DPLL.h"
+#include "hill_climbing.h"
 
 using namespace std;
 
 //prototype some functions
-vector<vector<int> > get_test_case_vector(bool easy, int test_case);
+vector<vector<int> > get_test_case_vector(bool easy, int test_case, int &nbvar, int &nbclauses);
 string vec_to_string(vector<int> v);
 string vec_to_string(vector<vector<int> > v);
 
 
 int main() {
+	srand ((int)time(NULL)); // seed the random number generator
 
-	vector<vector<int> > solution = get_test_case_vector(true, 1);
+	int nbvar = 0, nbclauses = 0;
 
-	cout << vec_to_string(solution) << "\n";
+  cout << "hellooooo";
+
+	vector<vector<int> > formula = get_test_case_vector(false, 10, nbvar, nbclauses);
+
+	cout << vec_to_string(formula) << "\n";
+
+	hill_climbing(formula, nbvar);
+
+
+	// I'll fix DPLL later I guess...
+	// cout << DPLL(formula, nbvar);
+
+	// for (int i=0; i<10;i++) {
+		vector<int> solution = generate_solution(nbvar);
+
+	// }
+
 
 	return 0;
 }
@@ -31,7 +51,7 @@ int main() {
 // if easy is true, it will return an easy test case. If false, returns a hard test case.
 // test_case should be a number [1-100] representing which test case to get.
 // returns a vector of vector<int>s, each vector<int> is a clause in the solution
-vector<vector<int> > get_test_case_vector(bool easy, int test_case) {
+vector<vector<int> > get_test_case_vector(bool easy, int test_case, int &nbvar, int &nbclauses) {
 	ifstream in;
 	stringstream ss;
 	if (easy)
@@ -44,7 +64,8 @@ vector<vector<int> > get_test_case_vector(bool easy, int test_case) {
 	in.open(file_to_open);
 
 	string extracted, cnf;
-	int nbvar = 0, nbclauses = 0;
+	nbvar = 0;
+	nbclauses = 0;
 
 	//this while loop ignores all comments and extracts nbvar and nbclauses from the cnf file
 	while (nbclauses == 0) {
@@ -78,6 +99,7 @@ vector<vector<int> > get_test_case_vector(bool easy, int test_case) {
 	return solution;
 }
 
+/*
 // takes a vector<int> as an argument
 // returns a string of that vector, mostly used for debugging purposes
 string vec_to_string(vector<int> v) {
@@ -89,6 +111,7 @@ string vec_to_string(vector<int> v) {
 	ss << v[v.size()-1] << ">";
 	return ss.str();
 }
+*/
 
 // takes a vector<vector<int>> as an argument
 // returns a string of that vector, mostly used for debugging purposes
