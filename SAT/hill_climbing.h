@@ -8,7 +8,8 @@
 
 using namespace std;
 
-bool hill_climbing(vector<vector<int> > formula, int nbvar);
+vector<int> repeated_hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfiable);
+vector<int> hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfiable);
 vector<int> generate_solution(int nbvar);
 vector<int> mutate_solution(vector<int> solution);
 vector<vector<int> > get_neighbors(vector<int> solution);

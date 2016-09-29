@@ -3,7 +3,7 @@
 # AI Satisfiability Programming Assignment
 # Makefile
 
-OBJECTS = satisfiability.o DPLL.o hill_climbing.o
+OBJECTS = satisfiability.o DPLL.o hill_climbing.o walk_SAT.o
 CXX = g++
 CXXFLAGS = -Wall -g
 
@@ -18,6 +18,9 @@ DPLL.o: DPLL.cpp DPLL.h
 
 hill_climbing.o: hill_climbing.cpp hill_climbing.h
 	$(CXX) $(CXXFLAGS) -c hill_climbing.cpp
+
+walk_SAT.o: walk_SAT.cpp walk_SAT.h
+	$(CXX) $(CXXFLAGS) -c walk_SAT.cpp
 
 zip:
 	zip evan_heaton_satisfiability *.cpp *.h *.md *.png

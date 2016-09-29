@@ -13,9 +13,19 @@
 
 using namespace std;
 
+vector<int> repeated_hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfiable) {
+
+	vector<int> solution;
+	int max_restarts = 11; // If your algorithm uses randomness, do 10 runs per formula.
+
+	while (max_restarts-- > 0 && !satisfiable) { // do hill climbing 200 (199?) times or until a proper solution is found
+		solution = hill_climbing(formula, nbvar, satisfiable);
+	}
+	return solution;
+}
 
 
-bool hill_climbing(vector<vector<int> > formula, int nbvar) {
+vector<int> hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfiable) {
 	vector<int> solution = generate_solution(nbvar);
 	int current_fitness = get_fitness(solution, formula);
 	bool better_neighbors_exist = true;
@@ -41,11 +51,11 @@ bool hill_climbing(vector<vector<int> > formula, int nbvar) {
 	}
 
 	if (get_fitness(solution, formula) == formula.size()) {
-		cout << "Satisfiable!\n";
-		return true;
+		satisfiable = true;
+		return solution;
 	} else {
 		cout << "Best solution found was: " << vec_to_string(solution) << " with fitness " << current_fitness << "\n";
-		return false;
+		return solution;
 	}
 }
 

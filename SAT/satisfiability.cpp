@@ -11,6 +11,7 @@
 #include <time.h>
 #include "DPLL.h"
 #include "hill_climbing.h"
+#include "walk_SAT.h"
 
 using namespace std;
 
@@ -25,23 +26,26 @@ int main() {
 
 	int nbvar = 0, nbclauses = 0;
 
-  cout << "hellooooo";
-
-	vector<vector<int> > formula = get_test_case_vector(false, 10, nbvar, nbclauses);
+	vector<vector<int> > formula = get_test_case_vector(true, 10, nbvar, nbclauses);
 
 	cout << vec_to_string(formula) << "\n";
 
-	hill_climbing(formula, nbvar);
+	bool satisfiable = false;
+	vector<int> solution = walk_sat(formula, nbvar, satisfiable);
+	if (satisfiable)
+		cout << "Satisfiable with solution: " << vec_to_string(solution) << "\n";
+	else
+		cout << "Probably not satisfiable :(\n";
 
+	satisfiable = false;
+	solution = repeated_hill_climbing(formula, nbvar, satisfiable);
+	if (satisfiable)
+		cout << "Satisfiable with solution: " << vec_to_string(solution) << "\n";
+	else
+		cout << "Probably not satisfiable :(\n";
 
 	// I'll fix DPLL later I guess...
 	// cout << DPLL(formula, nbvar);
-
-	// for (int i=0; i<10;i++) {
-		vector<int> solution = generate_solution(nbvar);
-
-	// }
-
 
 	return 0;
 }
