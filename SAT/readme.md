@@ -25,3 +25,12 @@ Download these sets of formulasView in a new window. Run each of your three algo
 * a brief statement of what you learned
 
 [Format info!](http://www.satcompetition.org/2004/format-solvers2004.html)
+
+________________________________________________________________________________________________________________
+
+The three algorithms that I implemented are:
+* DPLL
+* WalkSAT
+* Hill Climbing (repeated Local Search)
+  * asdf
+* asdf
