@@ -9,9 +9,11 @@
 #include <vector>
 #include <stdlib.h>  //for abs(), rand(), srand()
 #include <time.h>
+#include <ctime> // for clock()
 #include "DPLL.h"
 #include "hill_climbing.h"
 #include "walk_SAT.h"
+#include "other_helpers.h"
 
 using namespace std;
 
@@ -21,28 +23,69 @@ string vec_to_string(vector<int> v);
 string vec_to_string(vector<vector<int> > v);
 
 
-int main() {
+// 1st command line argument is 1 or 0, 1 for easy, 0 for hard.
+// 2nd command line argument is 1-100, representing which formula to attempt to satisfy
+
+int main(int argc, char* argv[]) {
 	srand ((int)time(NULL)); // seed the random number generator
 
+	if (argc != 3) {
+		cout << "usage: " << argv[0] << " [easy/~hard] [#1-100]\n";
+		return 1;
+	}
+
+	stringstream ss;
+	bool easy;
+	int formula_number;
+	ss << argv[1] << " " << argv[2];
+	if (!(ss >> easy)) {
+		cout << "usa1ge: " << argv[0] << " [easy/~hard] [#1-100]\n";
+		return 1;
+	}
+	if (!(ss >> formula_number)) {
+		cout << "usa2ge: " << argv[0] << " [easy/~hard] [#1-100]\n";
+		return 1;
+	}
+	if (formula_number < 1 || formula_number > 100) {
+		cout << "usa3ge: " << argv[0] << " [easy/~hard] [#1-100]\n";
+		return 1;
+	}
+
 	int nbvar = 0, nbclauses = 0;
+	vector<vector<int> > formula = get_test_case_vector(easy, formula_number, nbvar, nbclauses); // parse the cnf file
 
-	vector<vector<int> > formula = get_test_case_vector(true, 10, nbvar, nbclauses);
+	clock_t start;
+	double duration;
 
-	cout << vec_to_string(formula) << "\n";
+	/*
+	bool satisfiable = false;
+	start = clock();
+	satisfiable = DPLL(formula, nbvar);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
+	if (satisfiable)
+		cout << "SAT by DPLL in     \t" << duration << "s\n";
+	else
+		cout << "UNSAT by DPLL in   \t" << duration << "s\n";
+	*/
+
 
 	bool satisfiable = false;
+	start = clock();
 	vector<int> solution = walk_sat(formula, nbvar, satisfiable);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	if (satisfiable)
-		cout << "Satisfiable with solution: " << vec_to_string(solution) << "\n";
+		cout << "SAT by walkSAT in  \t" << duration << "s\n";
 	else
-		cout << "Probably not satisfiable :(\n";
+		cout << "UNSAT by walkSAT in\t" << duration << "s\n";
 
 	satisfiable = false;
+	start = clock();
 	solution = repeated_hill_climbing(formula, nbvar, satisfiable);
+	duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 	if (satisfiable)
-		cout << "Satisfiable with solution: " << vec_to_string(solution) << "\n";
+		cout << "SAT by LS in       \t" << duration << "s\n";
 	else
-		cout << "Probably not satisfiable :(\n";
+		cout << "UNSAT by LS in     \t" << duration << "s\n";
 
 	// I'll fix DPLL later I guess...
 	// cout << DPLL(formula, nbvar);
@@ -50,6 +93,30 @@ int main() {
 	return 0;
 }
 
+vector<vector<int> > make_test_formula() {
+	vector<vector<int> > test_formula; // this should be consistent
+	vector<int> clause1;
+	clause1.push_back(1);
+	clause1.push_back(2);
+	clause1.push_back(-3);
+
+	vector<int> clause2;
+	clause2.push_back(-4);
+	clause2.push_back(-5);
+	clause2.push_back(-6);
+
+
+	vector<int> clause3;
+	clause3.push_back(1);
+	clause3.push_back(-4);
+	clause3.push_back(-3);
+
+	test_formula.push_back(clause1);
+	test_formula.push_back(clause2);
+	test_formula.push_back(clause3);
+
+	return test_formula;
+}
 
 // takes as arguments bool easy and int test_case
 // if easy is true, it will return an easy test case. If false, returns a hard test case.
@@ -101,30 +168,4 @@ vector<vector<int> > get_test_case_vector(bool easy, int test_case, int &nbvar, 
 		solution.push_back(clause);
 	}
 	return solution;
-}
-
-/*
-// takes a vector<int> as an argument
-// returns a string of that vector, mostly used for debugging purposes
-string vec_to_string(vector<int> v) {
-	stringstream ss;
-	ss << "<";
-	for (int i=0; i<v.size()-1; i++) {
-		ss << v[i] << ", ";
-	}
-	ss << v[v.size()-1] << ">";
-	return ss.str();
-}
-*/
-
-// takes a vector<vector<int>> as an argument
-// returns a string of that vector, mostly used for debugging purposes
-string vec_to_string(vector<vector<int> > v) {
-	stringstream ss;
-	ss << "<\t";
-	for (int i=0; i<v.size()-1; i++) {
-		ss << vec_to_string(v[i]) << "\n\t";
-	}
-	ss << vec_to_string(v[v.size()-1]) << "\t>";
-	return ss.str();
 }

@@ -10,24 +10,24 @@
 #include <stdlib.h>  //for abs(), rand(), srand()
 #include <time.h>
 #include "walk_SAT.h"
-#include "hill_climbing.h"
+#include "other_helpers.h"
 
 using namespace std;
 
 vector<int> walk_sat(vector<vector<int> > formula, int nbvar, bool &satisfiable) {
-  int max_restarts = 11; // If your algorithm uses randomness, do 10 runs per formula.
+  int max_restarts = 501; // If your algorithm uses randomness, do 10 runs per formula.
   vector<int> solution;
   while (max_restarts-- > 0 && !satisfiable) {
 
     solution = generate_solution(nbvar);
-    for (int i=0; i<100; i++) { // Do 100 alterations to the solution, looking for a proper solution. I chose 100 arbitrarily
+    for (int i=0; i<500; i++) { // Do 100 alterations to the solution, looking for a proper solution. I chose 100 arbitrarily
 
       if (get_fitness(solution, formula) == formula.size()) { // Have we satisfied everything yet??
         satisfiable = true;
         return solution;
       } else {
         int random_0_9 = rand() % 10;
-        if (random_0_9 < 2) { // with 20% probability
+        if (random_0_9 < 5) { // with 50% probability
           solution = mutate_solution(solution);
         } else {
           // randomly choose a clause that is not satisfied

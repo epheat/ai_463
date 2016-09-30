@@ -28,9 +28,22 @@ Download these sets of formulasView in a new window. Run each of your three algo
 
 ________________________________________________________________________________________________________________
 
-The three algorithms that I implemented are:
+### The three algorithms that I implemented are:
 * DPLL
+  * I had to add an extra check for consistency and empty clauses AFTER the unit-propogation/pure-literal-assignment
+  * For my choose_literal function, I chose a random literal that existed in the formula.
 * WalkSAT
+  * I chose to make 500 mutations to the solution, looking for a satisfying assignment. If it's not found in 500 mutations, a new random assignment is used (restart)
+  * I chose to use at max 500 restarts.
+  * This combination yielded an average running time of about 3 minutes, which is what I was aiming for to finish in time for the deadline.
 * Hill Climbing (repeated Local Search)
-  * asdf
-* asdf
+  * I chose to allow 1000 restarts, every time a plateau is found. This didn't seem to be enough for the hard cases, it timed out almost every time before finding the satisfying assignment.
+
+### Running Instructions:
+Type 'make' on the command line to compile the code, and ./satisfiability [easy/~hard] [Formula#] to test a particular Formula. OR, use the included shell script "./all_sat_testing.sh [easy/~hard]" to test all 100 formulas of a particular difficulty.
+
+### Data collected:
+see the excel sheet I included in the .zip
+
+### Learning Outcome:
+I had never heard of Satisfiability before this assignment, but now I know all about it! It's one of those categories that can be applied to many problems, so hopefully having these solutions implemented will serve me well in the future. I also learned how to keep track of time in c++ through the use of clock(), and re-learned how to link together many c++ files into a single executable through the use of a Makefile. I'm finally back in the groove of using unix as a development environment!

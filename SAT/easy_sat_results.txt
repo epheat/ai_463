@@ -1,0 +1,505 @@
+// Evan Heaton
+// 09/29/2016
+// AI Satisfiability Programming Assignment
+// EASY formulas test results
+
+-----------	 1 	------------
+UNSAT by DPLL in   	0.005303s
+UNSAT by walkSAT in	0.115114s
+UNSAT by LS in     	0.010449s
+
+-----------	 2 	------------
+UNSAT by DPLL in   	0.003255s
+UNSAT by walkSAT in	0.112274s
+UNSAT by LS in     	0.009675s
+
+-----------	 3 	------------
+SAT by DPLL in     	0.001657s
+SAT by walkSAT in  	0.000341s
+SAT by LS in       	0.001464s
+
+-----------	 4 	------------
+UNSAT by DPLL in   	0.003336s
+UNSAT by walkSAT in	0.128199s
+UNSAT by LS in     	0.008959s
+
+-----------	 5 	------------
+SAT by DPLL in     	0.000917s
+SAT by walkSAT in  	0.000405s
+SAT by LS in       	0.000743s
+
+-----------	 6 	------------
+UNSAT by DPLL in   	0.002923s
+UNSAT by walkSAT in	0.101507s
+UNSAT by LS in     	0.008146s
+
+-----------	 7 	------------
+SAT by DPLL in     	0.002077s
+SAT by walkSAT in  	0.000732s
+SAT by LS in       	0.001028s
+
+-----------	 8 	------------
+UNSAT by DPLL in   	0.002001s
+UNSAT by walkSAT in	0.104556s
+UNSAT by LS in     	0.00902s
+
+-----------	 9 	------------
+UNSAT by DPLL in   	0.001992s
+UNSAT by walkSAT in	0.105757s
+UNSAT by LS in     	0.007131s
+
+-----------	 10 	------------
+SAT by DPLL in     	0.006762s
+SAT by walkSAT in  	0.006204s
+SAT by LS in       	0.003764s
+
+-----------	 11 	------------
+SAT by DPLL in     	0.001961s
+SAT by walkSAT in  	0.001789s
+SAT by LS in       	0.001769s
+
+-----------	 12 	------------
+SAT by DPLL in     	0.002286s
+SAT by walkSAT in  	0.002692s
+SAT by LS in       	0.002895s
+
+-----------	 13 	------------
+UNSAT by DPLL in   	0.002599s
+UNSAT by walkSAT in	0.105532s
+UNSAT by LS in     	0.008354s
+
+-----------	 14 	------------
+UNSAT by DPLL in   	0.002945s
+UNSAT by walkSAT in	0.103694s
+UNSAT by LS in     	0.012417s
+
+-----------	 15 	------------
+SAT by DPLL in     	0.002046s
+SAT by walkSAT in  	0.003214s
+SAT by LS in       	0.003186s
+
+-----------	 16 	------------
+UNSAT by DPLL in   	0.002505s
+UNSAT by walkSAT in	0.107404s
+UNSAT by LS in     	0.009499s
+
+-----------	 17 	------------
+UNSAT by DPLL in   	0.003003s
+UNSAT by walkSAT in	0.11863s
+UNSAT by LS in     	0.009171s
+
+-----------	 18 	------------
+SAT by DPLL in     	0.001131s
+SAT by walkSAT in  	0.000862s
+SAT by LS in       	0.007111s
+
+-----------	 19 	------------
+UNSAT by DPLL in   	0.004357s
+UNSAT by walkSAT in	0.117077s
+UNSAT by LS in     	0.008258s
+
+-----------	 20 	------------
+UNSAT by DPLL in   	0.00251s
+UNSAT by walkSAT in	0.10572s
+UNSAT by LS in     	0.009735s
+
+-----------	 21 	------------
+UNSAT by DPLL in   	0.004545s
+UNSAT by walkSAT in	0.108428s
+UNSAT by LS in     	0.009022s
+
+-----------	 22 	------------
+UNSAT by DPLL in   	0.004759s
+UNSAT by walkSAT in	0.111686s
+UNSAT by LS in     	0.012527s
+
+-----------	 23 	------------
+UNSAT by DPLL in   	0.005894s
+UNSAT by walkSAT in	0.108889s
+UNSAT by LS in     	0.009438s
+
+-----------	 24 	------------
+SAT by DPLL in     	0.002059s
+SAT by walkSAT in  	0.004183s
+SAT by LS in       	0.000781s
+
+-----------	 25 	------------
+UNSAT by DPLL in   	0.004701s
+UNSAT by walkSAT in	0.107812s
+UNSAT by LS in     	0.010163s
+
+-----------	 26 	------------
+UNSAT by DPLL in   	0.003222s
+UNSAT by walkSAT in	0.110924s
+UNSAT by LS in     	0.008183s
+
+-----------	 27 	------------
+SAT by DPLL in     	0.002744s
+SAT by walkSAT in  	0.008628s
+SAT by LS in       	0.001923s
+
+-----------	 28 	------------
+UNSAT by DPLL in   	0.002005s
+UNSAT by walkSAT in	0.10896s
+UNSAT by LS in     	0.008838s
+
+-----------	 29 	------------
+SAT by DPLL in     	0.003211s
+SAT by walkSAT in  	0.002477s
+SAT by LS in       	0.000858s
+
+-----------	 30 	------------
+UNSAT by DPLL in   	0.002967s
+UNSAT by walkSAT in	0.098207s
+UNSAT by LS in     	0.009019s
+
+-----------	 31 	------------
+UNSAT by DPLL in   	0.002053s
+UNSAT by walkSAT in	0.108805s
+UNSAT by LS in     	0.009911s
+
+-----------	 32 	------------
+SAT by DPLL in     	0.001048s
+SAT by walkSAT in  	0.010309s
+SAT by LS in       	0.000514s
+
+-----------	 33 	------------
+SAT by DPLL in     	0.003744s
+SAT by walkSAT in  	0.001101s
+SAT by LS in       	0.007248s
+
+-----------	 34 	------------
+SAT by DPLL in     	0.001272s
+SAT by walkSAT in  	0.001118s
+SAT by LS in       	0.001384s
+
+-----------	 35 	------------
+SAT by DPLL in     	0.002803s
+SAT by walkSAT in  	0.000819s
+SAT by LS in       	0.005124s
+
+-----------	 36 	------------
+SAT by DPLL in     	0.002407s
+SAT by walkSAT in  	0.000599s
+SAT by LS in       	0.00308s
+
+-----------	 37 	------------
+UNSAT by DPLL in   	0.00248s
+UNSAT by walkSAT in	0.108569s
+UNSAT by LS in     	0.008254s
+
+-----------	 38 	------------
+UNSAT by DPLL in   	0.002692s
+UNSAT by walkSAT in	0.101358s
+UNSAT by LS in     	0.008962s
+
+-----------	 39 	------------
+SAT by DPLL in     	0.001717s
+SAT by walkSAT in  	0.000929s
+SAT by LS in       	0.002046s
+
+-----------	 40 	------------
+UNSAT by DPLL in   	0.002709s
+UNSAT by walkSAT in	0.11377s
+UNSAT by LS in     	0.009156s
+
+-----------	 41 	------------
+UNSAT by DPLL in   	0.001542s
+UNSAT by walkSAT in	0.111479s
+UNSAT by LS in     	0.00866s
+
+-----------	 42 	------------
+UNSAT by DPLL in   	0.003642s
+UNSAT by walkSAT in	0.103263s
+UNSAT by LS in     	0.008569s
+
+-----------	 43 	------------
+SAT by DPLL in     	0.001136s
+SAT by walkSAT in  	0.000591s
+SAT by LS in       	0.000792s
+
+-----------	 44 	------------
+UNSAT by DPLL in   	0.002638s
+UNSAT by walkSAT in	0.104966s
+UNSAT by LS in     	0.00766s
+
+-----------	 45 	------------
+SAT by DPLL in     	0.001342s
+SAT by walkSAT in  	0.002118s
+SAT by LS in       	0.002132s
+
+-----------	 46 	------------
+SAT by DPLL in     	0.001585s
+SAT by walkSAT in  	0.000702s
+SAT by LS in       	0.00203s
+
+-----------	 47 	------------
+UNSAT by DPLL in   	0.002697s
+UNSAT by walkSAT in	0.114585s
+UNSAT by LS in     	0.00733s
+
+-----------	 48 	------------
+UNSAT by DPLL in   	0.005002s
+UNSAT by walkSAT in	0.109924s
+UNSAT by LS in     	0.00817s
+
+-----------	 49 	------------
+UNSAT by DPLL in   	0.001892s
+UNSAT by walkSAT in	0.108175s
+UNSAT by LS in     	0.009552s
+
+-----------	 50 	------------
+UNSAT by DPLL in   	0.002643s
+UNSAT by walkSAT in	0.10937s
+UNSAT by LS in     	0.00879s
+
+-----------	 51 	------------
+UNSAT by DPLL in   	0.00529s
+UNSAT by walkSAT in	0.111466s
+UNSAT by LS in     	0.01207s
+
+-----------	 52 	------------
+UNSAT by DPLL in   	0.002883s
+UNSAT by walkSAT in	0.103943s
+UNSAT by LS in     	0.00993s
+
+-----------	 53 	------------
+SAT by DPLL in     	0.001018s
+SAT by walkSAT in  	0.000908s
+SAT by LS in       	0.002529s
+
+-----------	 54 	------------
+UNSAT by DPLL in   	0.002908s
+UNSAT by walkSAT in	0.103957s
+UNSAT by LS in     	0.010943s
+
+-----------	 55 	------------
+SAT by DPLL in     	0.002829s
+SAT by walkSAT in  	0.003635s
+SAT by LS in       	0.002123s
+
+-----------	 56 	------------
+UNSAT by DPLL in   	0.001592s
+UNSAT by walkSAT in	0.106457s
+UNSAT by LS in     	0.008285s
+
+-----------	 57 	------------
+SAT by DPLL in     	0.000899s
+SAT by walkSAT in  	0.004816s
+SAT by LS in       	0.013796s
+
+-----------	 58 	------------
+UNSAT by DPLL in   	0.002745s
+UNSAT by walkSAT in	0.108823s
+UNSAT by LS in     	0.008092s
+
+-----------	 59 	------------
+UNSAT by DPLL in   	0.005323s
+UNSAT by walkSAT in	0.114821s
+UNSAT by LS in     	0.010057s
+
+-----------	 60 	------------
+SAT by DPLL in     	0.00083s
+SAT by walkSAT in  	0.00047s
+SAT by LS in       	0.001941s
+
+-----------	 61 	------------
+SAT by DPLL in     	0.002207s
+SAT by walkSAT in  	0.024993s
+SAT by LS in       	0.006162s
+
+-----------	 62 	------------
+UNSAT by DPLL in   	0.002911s
+UNSAT by walkSAT in	0.107206s
+UNSAT by LS in     	0.011643s
+
+-----------	 63 	------------
+UNSAT by DPLL in   	0.002374s
+UNSAT by walkSAT in	0.106764s
+UNSAT by LS in     	0.00919s
+
+-----------	 64 	------------
+SAT by DPLL in     	0.001141s
+SAT by walkSAT in  	0.000783s
+SAT by LS in       	0.008436s
+
+-----------	 65 	------------
+SAT by DPLL in     	0.001329s
+SAT by walkSAT in  	0.000871s
+SAT by LS in       	0.001658s
+
+-----------	 66 	------------
+UNSAT by DPLL in   	0.003492s
+UNSAT by walkSAT in	0.103171s
+UNSAT by LS in     	0.010409s
+
+-----------	 67 	------------
+SAT by DPLL in     	0.002512s
+SAT by walkSAT in  	0.000164s
+SAT by LS in       	0.001722s
+
+-----------	 68 	------------
+UNSAT by DPLL in   	0.002743s
+UNSAT by walkSAT in	0.109465s
+UNSAT by LS in     	0.007397s
+
+-----------	 69 	------------
+UNSAT by DPLL in   	0.003053s
+UNSAT by walkSAT in	0.104357s
+UNSAT by LS in     	0.012327s
+
+-----------	 70 	------------
+SAT by DPLL in     	0.00099s
+SAT by walkSAT in  	0.000366s
+SAT by LS in       	0.001754s
+
+-----------	 71 	------------
+UNSAT by DPLL in   	0.002564s
+UNSAT by walkSAT in	0.105949s
+UNSAT by LS in     	0.008729s
+
+-----------	 72 	------------
+SAT by DPLL in     	0.003936s
+SAT by walkSAT in  	0.000673s
+SAT by LS in       	0.004985s
+
+-----------	 73 	------------
+SAT by DPLL in     	0.001654s
+SAT by walkSAT in  	0.000471s
+SAT by LS in       	0.000518s
+
+-----------	 74 	------------
+SAT by DPLL in     	0.001059s
+SAT by walkSAT in  	0.011794s
+SAT by LS in       	0.003026s
+
+-----------	 75 	------------
+SAT by DPLL in     	0.001577s
+SAT by walkSAT in  	0.000708s
+SAT by LS in       	0.002134s
+
+-----------	 76 	------------
+UNSAT by DPLL in   	0.002271s
+UNSAT by walkSAT in	0.09667s
+UNSAT by LS in     	0.007923s
+
+-----------	 77 	------------
+UNSAT by DPLL in   	0.003047s
+UNSAT by walkSAT in	0.120923s
+UNSAT by LS in     	0.00767s
+
+-----------	 78 	------------
+SAT by DPLL in     	0.001313s
+SAT by walkSAT in  	0.00095s
+SAT by LS in       	0.001497s
+
+-----------	 79 	------------
+UNSAT by DPLL in   	0.003364s
+UNSAT by walkSAT in	0.104018s
+UNSAT by LS in     	0.012894s
+
+-----------	 80 	------------
+SAT by DPLL in     	0.002137s
+SAT by walkSAT in  	0.000495s
+SAT by LS in       	0.000771s
+
+-----------	 81 	------------
+SAT by DPLL in     	0.002227s
+SAT by walkSAT in  	0.000488s
+UNSAT by LS in     	0.010313s
+
+-----------	 82 	------------
+UNSAT by DPLL in   	0.004375s
+UNSAT by walkSAT in	0.098029s
+UNSAT by LS in     	0.008369s
+
+-----------	 83 	------------
+UNSAT by DPLL in   	0.002649s
+UNSAT by walkSAT in	0.110268s
+UNSAT by LS in     	0.007447s
+
+-----------	 84 	------------
+UNSAT by DPLL in   	0.00253s
+UNSAT by walkSAT in	0.106971s
+UNSAT by LS in     	0.01021s
+
+-----------	 85 	------------
+SAT by DPLL in     	0.001516s
+SAT by walkSAT in  	0.000493s
+SAT by LS in       	0.001256s
+
+-----------	 86 	------------
+SAT by DPLL in     	0.004271s
+SAT by walkSAT in  	0.002587s
+SAT by LS in       	0.004066s
+
+-----------	 87 	------------
+UNSAT by DPLL in   	0.005607s
+UNSAT by walkSAT in	0.101536s
+UNSAT by LS in     	0.0085s
+
+-----------	 88 	------------
+UNSAT by DPLL in   	0.004269s
+UNSAT by walkSAT in	0.098559s
+UNSAT by LS in     	0.00837s
+
+-----------	 89 	------------
+SAT by DPLL in     	0.002323s
+SAT by walkSAT in  	0.007691s
+UNSAT by LS in     	0.009232s
+
+-----------	 90 	------------
+UNSAT by DPLL in   	0.00271s
+UNSAT by walkSAT in	0.102615s
+UNSAT by LS in     	0.010033s
+
+-----------	 91 	------------
+SAT by DPLL in     	0.003975s
+SAT by walkSAT in  	0.001431s
+SAT by LS in       	0.001977s
+
+-----------	 92 	------------
+SAT by DPLL in     	0.003139s
+SAT by walkSAT in  	0.001432s
+UNSAT by LS in     	0.008259s
+
+-----------	 93 	------------
+SAT by DPLL in     	0.001598s
+SAT by walkSAT in  	0.000529s
+SAT by LS in       	0.006693s
+
+-----------	 94 	------------
+SAT by DPLL in     	0.001017s
+SAT by walkSAT in  	0.001605s
+UNSAT by LS in     	0.00911s
+
+-----------	 95 	------------
+UNSAT by DPLL in   	0.004377s
+UNSAT by walkSAT in	0.099832s
+UNSAT by LS in     	0.00848s
+
+-----------	 96 	------------
+UNSAT by DPLL in   	0.003343s
+UNSAT by walkSAT in	0.105057s
+UNSAT by LS in     	0.008728s
+
+-----------	 97 	------------
+SAT by DPLL in     	0.002724s
+SAT by walkSAT in  	0.023522s
+UNSAT by LS in     	0.009657s
+
+-----------	 98 	------------
+UNSAT by DPLL in   	0.002991s
+UNSAT by walkSAT in	0.108112s
+UNSAT by LS in     	0.011523s
+
+-----------	 99 	------------
+UNSAT by DPLL in   	0.002663s
+UNSAT by walkSAT in	0.109639s
+UNSAT by LS in     	0.007872s
+
+-----------	 100 	------------
+SAT by DPLL in     	0.004585s
+SAT by walkSAT in  	0.006478s
+SAT by LS in       	0.00099s
+

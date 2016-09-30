@@ -17,4 +17,5 @@ vector<int> get_pure_literals(vector<vector<int> > solution, int nbvar);
 int sign(int input);
 int choose_literal(vector<vector<int> > solution);
 
+
 #endif

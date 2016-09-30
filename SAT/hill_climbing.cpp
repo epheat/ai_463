@@ -10,13 +10,14 @@
 #include <stdlib.h>  //for abs(), rand(), srand()
 #include <time.h>
 #include "hill_climbing.h"
+#include "other_helpers.h"
 
 using namespace std;
 
 vector<int> repeated_hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfiable) {
 
 	vector<int> solution;
-	int max_restarts = 11; // If your algorithm uses randomness, do 10 runs per formula.
+	int max_restarts = 501; // If your algorithm uses randomness, do 10 runs per formula.
 
 	while (max_restarts-- > 0 && !satisfiable) { // do hill climbing 200 (199?) times or until a proper solution is found
 		solution = hill_climbing(formula, nbvar, satisfiable);
@@ -54,27 +55,7 @@ vector<int> hill_climbing(vector<vector<int> > formula, int nbvar, bool &satisfi
 		satisfiable = true;
 		return solution;
 	} else {
-		cout << "Best solution found was: " << vec_to_string(solution) << " with fitness " << current_fitness << "\n";
-		return solution;
-	}
-}
-
-// generates a random assignment of trues and falses for every literal in the formula
-vector<int> generate_solution(int nbvar) {
-	vector<int> solution;
-	for (int i=0; i<nbvar; i++) {
-		solution.push_back(rand() % 2);
-	}
-	return solution;
-}
-
-// returns a solution with a single random bit flipped
-vector<int> mutate_solution(vector<int> solution) {
-	if (solution.size() == 0)
-		return solution;
-	else {
-		int random_index = rand() % solution.size();
-		solution[random_index] = !solution[random_index]; //flip a random bit
+		// cout << "Best solution found was: " << vec_to_string(solution) << " with fitness " << current_fitness << "\n";
 		return solution;
 	}
 }
@@ -88,36 +69,4 @@ vector<vector<int> > get_neighbors(vector<int> solution) {
 		neighbor_list.push_back(neighbor);
 	}
 	return neighbor_list;
-}
-
-// returns the fitness of solution in the range [0, formula.size()]
-int get_fitness(vector<int> solution, vector<vector<int> > formula) {
-	int fitness = 0;
-	for (int i=0; i<formula.size(); i++) {
-		bool found_correct_literal = false;
-		for (int j=0;j<formula[i].size(); j++) {
-			if (formula[i][j] > 0) { // positive literal
-				if (solution[formula[i][j]-1])
-					found_correct_literal = true;
-			} else { // negative literal
-				if (!solution[-formula[i][j]-1])
-					found_correct_literal = true;
-			}
-		}
-		if (found_correct_literal)
-			fitness++;
-	}
-	return fitness;
-}
-
-// takes a vector<int> as an argument
-// returns a string of that vector, mostly used for debugging purposes
-string vec_to_string(vector<int> v) {
-	stringstream ss;
-	ss << "<";
-	for (int i=0; i<v.size()-1; i++) {
-		ss << v[i] << ", ";
-	}
-	ss << v[v.size()-1] << ">";
-	return ss.str();
 }
