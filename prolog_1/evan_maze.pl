@@ -66,8 +66,8 @@ adjacent(X1, Y1, X2, Y2) :-
 
 % openblock(X, Y, Maze) is true when the space at (X, Y) [origin at top left] is a 0.
 openblock(X, Y, Maze) :-
-	nth1(Y, Maze, Row),
-	nth1(X, Row, 0).
+	nth0(Y, Maze, Row),
+	nth0(X, Row, 0).
 
 printlist([]).
 printlist([A|B]) :-
