@@ -6,7 +6,7 @@ Prolog Assignment 1
 RUN evan\_maze.pl WITH GPROLOG!!!
 
 ### Program Description
-The maze is stored as a list of lists, with X coordinates representing the col#, and y coordinates representing the row#. The origin is in the top left corner, and the indices start with 1.
+The maze is stored as a list of lists, with X coordinates representing the col#, and y coordinates representing the row#. The origin is in the top left corner, thus the indices start with 0.
 
 My program builds a path from (X1, Y1) to (Xf, Yf) through a depth first search.
 Every iteration, I first check if I have reached (Xf, Yf). If not (which is usually the case), my program will do the following:
