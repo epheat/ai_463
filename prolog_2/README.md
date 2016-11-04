@@ -12,6 +12,6 @@ View the comments in the source file for more detailed information.
 
 ### Learning Outcome
 
-From this assignment, I learned that sometimes I have to come up with cheeky solutions to problems when I'm not familiar enough with the language I'm writing the solution in. I'd say that's actually my favorite part of programming: finding clever solutions to problems to save either real time or computational time. Additionally, I learned a lot more about how Lists work in prolog. I had trouble figuring out how to make te score count work in this program, because I couldn't get the Score to be initialized at zero without making the Score variable unify with 0... Eventually I found a workaround.
+From this assignment, I learned that sometimes I have to come up with cheeky solutions to problems when I'm not familiar enough with the language I'm writing the solution in. I'd say that's actually my favorite part of programming: finding clever solutions to problems to save either real time or computational time. Additionally, I learned a lot more about how Lists work in prolog. I had trouble figuring out how to make the score count work in this program, because I couldn't get the Score to be initialized at zero without making the Score variable unify with 0... Eventually I found a workaround.
 All in all, this program was pretty difficult, so I feel pretty good about finishing it. :)  
 
