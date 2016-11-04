@@ -3,6 +3,8 @@ CS465g: Artificial Intelligence
 Prolog 2
 11/3/2016
 
+Note: RUN MY PROGRAM IN GPROLOG!!!
+
 ### Explanation
 
 My program works by first finding a path to the egg. Once the egg is found, it will find a path to pikachu and the master ball (in any order). Finally, once all these items are found, it will make a path to the mewtwo, and terminate.
